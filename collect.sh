@@ -40,6 +40,8 @@ collectd ()
 
     # collect, then cd to created directory
     collect "$@";
-    pushd "$COLLECT_LAST"
+    pushd "$COLLECT_LAST";
+
+    return 0
 }
 export -f collectd

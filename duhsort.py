@@ -13,11 +13,13 @@ SUFFIXES = {'B': 1,  # Byte
 if __name__ == "__main__":
     ARGP = argparse.ArgumentParser(
         description="A tool for sorting the output of the command 'du -h'")
-    ARGP.add_argument('infile', nargs='*', type=argparse.FileType('r'),
-                      default=sys.stdin, help=("the input file to read, "
-                      "defaults to stdin if this argument is omitted"))
-    ARGP.add_argument('-r', '--reverse', action='store_true',
-                      help="print the output lines in reverse order")
+    ARGP.add_argument(
+        'infile', nargs='*', type=argparse.FileType('r'), default=sys.stdin,
+        help=("the input file to read, defaults to stdin if this argument is "
+              "omitted"))
+    ARGP.add_argument(
+        '-r', '--reverse', action='store_true',
+        help="print the output lines in reverse order")
     ARGS = ARGP.parse_args()
 
     PARSED = {}

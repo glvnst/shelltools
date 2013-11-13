@@ -4,8 +4,8 @@ export CONC_MAX=2
 
 conc () 
 { 
-    local procs=(`jobs -p`);
-    local proc_count=${#procs[*]};
+    local -a procs=($(jobs -p));
+    local proc_count=${#procs[@]};
 
     # Block until there is an open slot
     if ((proc_count >= CONC_MAX)); then
@@ -13,7 +13,7 @@ conc ()
     fi;
 
     # Start our task
-    ( eval "$@" ) &
+    ( "$@" ) &
 }
 export -f conc
 
@@ -28,10 +28,9 @@ xconc ()
     (
         local i;
         local start;
-        for ((i = 0; i < group_count; i++ ))
-        do
+        for ((i = 0; i < group_count; i++ )); do
             start=$(( (i * group_size) + 1 ));
-            conc "$command ${@:$start:$group_size}";
+            conc "$command" "${@:$start:$group_size}";
         done;
         wait
     )

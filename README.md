@@ -13,6 +13,9 @@ Misc tools for use in command shells.
 		$ fmt_duration 10
 		10 seconds
 
+- **randrange.py**: Implements the random.randrange python function on the command line. For example, `randrange.py 1 1000` returns a number between one and one thousand.
+- **randomvoice.py**: An OS X tool that returns the name of a randomly-selected text-to-speech voice. The voices are chosen from the set of voices installed on the system (the output of `say -v '?'`). 
+
 All files available under a BSD-style license. See LICENSE.txt for complete details.
 
 More coming soon.

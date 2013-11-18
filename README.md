@@ -14,7 +14,8 @@ Misc tools for use in command shells.
 		10 seconds
 
 - **randrange.py**: Implements the random.randrange python function on the command line. For example, `randrange.py 1 1000` returns a number between one and one thousand.
-- **randomvoice.py**: An OS X tool that returns the name of a randomly-selected text-to-speech voice. The voices are chosen from the set of voices installed on the system (the output of `say -v '?'`). 
+- **randomvoice.py**: An OS X tool that returns the name of a randomly-selected text-to-speech voice. The voices are chosen from the set of voices installed on the system (the output of `say -v '?'`).
+- **ql.py**: A command-line utility for viewing documents with quicklook. Wraps `qlmanage -p` with some convenient type handling. 
 
 All files available under a BSD-style license. See LICENSE.txt for complete details.
 

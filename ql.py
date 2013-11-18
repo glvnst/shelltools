@@ -1,5 +1,8 @@
 #!/usr/bin/python
-""" command-line OS X quicklook tool """
+""" command-line OS X quicklook tool
+Apple's docs on Uniform Type Identifiers can be found on their website at:
+http://tinyurl.com/utiref
+"""
 import argparse
 import subprocess
 import os

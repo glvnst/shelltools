@@ -3,10 +3,11 @@
 Apple's docs on Uniform Type Identifiers can be found on their website at:
 http://tinyurl.com/utiref
 """
+from __future__ import print_function
 import argparse
 import subprocess
 import os
-
+import sys
 
 SIMPLE_TYPES = {'text': 'public.text',
                 'image': 'public.image',
@@ -20,18 +21,36 @@ SPECIAL_NAMES = {'README': 'public.text',
                  'conf': 'public.source-code'}
 
 
+def warning(*objs):
+    """ Write a warning message to stderr """
+    print("WARNING:", *objs, file=sys.stderr)
+
+
 def quicklook(document_list, uniform_type=None):
     """
     Open a quicklook preview of the given documents with the optionally
     specified type
     """
+    # reconstruct the list, looking for things that don't exist and giving
+    # appropriate warnings
+    final_document_list = list()
+    for document in document_list:
+        if not os.path.exists(document):
+            warning('Could not find a file named "{}"'.format(document))
+            continue
+        final_document_list.append(document)
+
+    if not final_document_list:
+        warning("No documents to open")
+        return
+
     command = ['qlmanage']
 
     if uniform_type:
         command.extend(['-c', uniform_type])
 
     command.append('-p')
-    command.extend(document_list)
+    command.extend(final_document_list)
 
     with open(os.devnull, 'wb') as devnull:
         subprocess.call(command, stdout=devnull, stderr=subprocess.STDOUT)

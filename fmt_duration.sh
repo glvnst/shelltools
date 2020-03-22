@@ -92,7 +92,7 @@ fmt_duration() {
   done
 
   if [ -z "$_result" ]; then
-    _result="0 ${_label}"
+    _result="0 ${_plural_label}"
   fi
 
   printf '%s\n' "${_result#*, }"
@@ -111,4 +111,4 @@ main() {
   exit 0
 }
 
-main "$@"
+[ -n "$IMPORT" ] || main "$@"

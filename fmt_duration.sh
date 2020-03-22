@@ -97,8 +97,8 @@ fmt_duration() {
 
   printf '%s\n' "${_result#*, }"
 
-  unset _increment _label _labeled_increments _labels _plural_label _quantity \
-        _result _seconds _singular_label >/dev/null 2>&1
+  unset _increment _label _labeled_increments _labels _plural_label \
+    _quantity _result _seconds _singular_label
 }
 
 main() {

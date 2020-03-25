@@ -43,8 +43,8 @@ collect() {
 
   # Make the directory if necessary
   [ -d "$target" ] \
-  || mkdir -p -- "$target" \
-  || die "couldn't create target directory ${target}"
+    || mkdir -p -- "$target" \
+    || die "couldn't create target directory ${target}"
 
   # collect the things into the thing
   mv -i -- "$@" "${target}/" \

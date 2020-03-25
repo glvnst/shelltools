@@ -47,13 +47,10 @@ clean_networks() {
 }
 
 clean_volumes() {
-  # posix-compliance, in this case dealing with the lack of POSIX sed's regex
-  # numeric quantifiers, is THE HILL I AM GOING TO DIE ON!
-  # '/^[0-9a-f]{32}$/' ... would that it were so simple
   $DOCKER_QUERY volume ls \
     --quiet \
     --filter dangling=true \
-  | sed -n '/^[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$/p' \
+  | grep -E '/^[0-9a-f]{32}$/' \
   | $XARGS \
     $DOCKER_MUTATE volume rm --
 }

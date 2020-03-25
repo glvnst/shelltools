@@ -7,28 +7,17 @@ XARGS="xargs"
 DOCKER_QUERY="docker"
 DOCKER_MUTATE="docker"
 
-prefix() {
-  sed "s/^/${1}: /g"
-}
-
 clean_containers() {
-  # docker container prune --force
-  $DOCKER_QUERY container ls \
-    --quiet \
-    --all \
-    --filter status=exited \
-    --filter status=created \
-  | $XARGS \
-    $DOCKER_MUTATE container rm --volumes --
+  $DOCKER_MUTATE container prune \
+    --filter 'until=4h' \
+    --force
 }
 
 clean_images() {
-  # docker image prune --all --filter until=2160h --force 
-  $DOCKER_QUERY image ls \
-    --quiet \
-    --filter dangling=true \
-  | $XARGS \
-    $DOCKER_MUTATE image rm --
+  $DOCKER_MUTATE image prune \
+    --all \
+    --filter "until=2160h" \
+    --force
 }
 
 clean_networks() {
@@ -54,12 +43,9 @@ main() {
     XARGS="xargs --no-run-if-empty"
   fi
 
-  for component in container image network volume do
+  for component in container image network volume; do
+    "clean_${component}s" | sed "s/^/${component}: /g"
   done
-  clean_containers | prefix container
-  clean_images | prefix image
-  clean_networks | prefix network
-  clean_volumes | prefix volume
 }
 
 [ -n "$IMPORT" ] || main "$@"

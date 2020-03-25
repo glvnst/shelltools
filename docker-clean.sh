@@ -7,6 +7,24 @@ XARGS="xargs"
 DOCKER_QUERY="docker"
 DOCKER_MUTATE="docker"
 
+usage() {
+  self="$(basename "$0")"
+
+  printf '%s\n' \
+    "Usage: $self [-h | --help]" \
+    "" \
+    "This script removes bits of docker detritus, including:" \
+    "" \
+    "* Stopped containers older than 4 hours" \
+    "* Dangling images" \
+    "* Other images older than 90 days" \
+    "* Unused networks older than 7 days" \
+    "* Dangling volumes with 32-character hexadecimal names (anonymous volumes)" \
+    ""
+
+  exit 1
+}
+
 clean_containers() {
   $DOCKER_MUTATE container prune \
     --filter 'until=4h' \
@@ -15,6 +33,8 @@ clean_containers() {
 
 clean_images() {
   $DOCKER_MUTATE image prune \
+    --force
+  $DOCKER_MUTATE image prune \
     --all \
     --filter "until=2160h" \
     --force
@@ -22,6 +42,7 @@ clean_images() {
 
 clean_networks() {
   $DOCKER_MUTATE network prune \
+    --filter "until=168h" \
     --force
 }
 
@@ -38,6 +59,8 @@ clean_volumes() {
 }
 
 main() {
+  [ -z "$*" ] || usage
+
   # adjust for gnu xargs behavior
   if sh -c 'true | xargs --no-run-if-empty >/dev/null 2>&1'; then
     XARGS="xargs --no-run-if-empty"

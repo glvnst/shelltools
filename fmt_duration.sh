@@ -59,11 +59,11 @@ fmt_duration() {
   #   fmt_duration 1216567 day/days:86400 hour/hours:3600
   # yields:
   #   14 days, 1 hour
-  # 
+  #
   # This function makes heavy use of POSIX shell Parameter Expansion for
   # string manipulations, see:
   # https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
-  
+
   _seconds=${1:-0}; shift
   _labeled_increments=${*:-'year/years:31557600' \
                            'day/days:86400' \

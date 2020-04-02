@@ -60,8 +60,8 @@ stddev: {{StdDev .Numbers | TrimZeros}}
 The template is named `summary` and it has the following data items available:
 
 * `.Numbers` - a pre-sorted slice of numbers in float64 format
-* `.Min` - the float64 value of the first item of the Numbers slice (smallest value)
-* `.Max` - the float64 value of the final item of the Numbers slice (largest value)
+* `.Min` - the value of the first item of the Numbers slice (smallest value)
+* `.Max` - the value of the final item of the Numbers slice (largest value)
 * `.Count` - the number of items in the Numbers slice in integer format
 
 Additionally, the following functions are available to the template:

@@ -17,11 +17,8 @@ import (
 
 const helpText = `usage: %s [-h|--help]
 
-This command reads input lines from the standard input, finds the first numeric
-value on each line, and prints a mathematical summary of the numbers found when
-EOF is reached.
-
-Default Template: %s
+This utility reads lines from the standard input and writes a summary of the
+numeric data found therein.
 `
 
 // NumberRegexp is a regular expression which captures signed floats and ints.
@@ -196,7 +193,7 @@ func printSummary(tmpl string, data SummaryData, wr io.Writer) {
 
 func init() {
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, helpText, os.Args[0], DefaultSummaryTemplate)
+		fmt.Fprintf(os.Stderr, helpText, os.Args[0])
 		flag.PrintDefaults()
 	}
 	flag.StringVar(&templateText, "template", "",

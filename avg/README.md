@@ -4,22 +4,22 @@ This command-line utility reads lines from the standard input, searches each lin
 
 ## Output
 
-This is an example of the output from the command `seq 1 117.17 1000000 | avg`:
+This is an example of the output from the command `seq 1 10 | avg`:
 
 ```
- count: 8535
-   sum: 4267204615.95
+ count: 10
+   sum: 55
    min: 1
-   max: 999930
-  mean: 499965.391441
-median: 499965
-stddev: 288688.399358
-   iqr: 499964
-   25%: 249983.5
-   50%: 499965
-   75%: 749947.5
-   95%: 949933.1
-   99%: 989930.22
+   max: 10
+  mean: 5.5
+median: 5.5
+stddev: 2.872281
+   iqr: 4.5
+   25%: 3.25
+   50%: 5.5
+   75%: 7.75
+   95%: 9.55
+   99%: 9.91
 ```
 
 ## Usage

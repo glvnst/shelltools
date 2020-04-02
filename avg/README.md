@@ -59,14 +59,14 @@ stddev: {{StdDev .Numbers | TrimZeros}}
 
 The template is named `summary` and it has the following data items available:
 
-* `Numbers` - a pre-sorted slice of numbers in float64 format
-* `Min` - the float64 value of the first item of the Numbers slice (smallest value)
-* `Max` - the float64 value of the final item of the Numbers slice (largest value)
-* `Count` - the number of items in the Numbers slice in integer format
+* `.Numbers` - a pre-sorted slice of numbers in float64 format
+* `.Min` - the float64 value of the first item of the Numbers slice (smallest value)
+* `.Max` - the float64 value of the final item of the Numbers slice (largest value)
+* `.Count` - the number of items in the Numbers slice in integer format
 
 Additionally, the following functions are available to the template:
 
-* `Iqr` - inter-quartile range (absolute value of difference between 25% and 75% percentiles)
+* `Iqr` - inter-quartile range (absolute value of difference between 25th and 75th percentiles)
 * `Mean` - simple mean or "average" (sum of values divided by count of values)
 * `Median` - value of the middle item in a sorted slice if there are an odd number of elements OR the mean of the middle pair if the slice has an even number of elements
 * `Percentile` - the value of the member at the given percentage into the slice, includes fractional adjustment to final value (argument is a float64; the 25th precentile is available with the argument `0.25`)

@@ -1,34 +1,41 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """ Print a random value using the specified parameters """
-from __future__ import print_function
 import argparse
 import quopri
+import sys
+
+
+def write_decoded(input_string):
+    """ decode the given input string and write the result to STDOUT """
+    sys.stdout.write(quopri.decodestring(input_string))
 
 
 def main():
-    """ mainly the sole function """
-    file_reader = argparse.FileType('r')
-
-    argp = argparse.ArgumentParser(description=(
-        "This command performs MIME quoted-printable transport decoding"))
-    argp_meg1 = argp.add_mutually_exclusive_group(required=True)
-    argp_meg1.add_argument("-f", "--file", type=file_reader, nargs="*", help=(
-        "one or more file paths which should be read and decoded to standard "
-        "out (concatenated in the case of multiple files)"))
-    argp_meg1.add_argument("-s", "--string", type=str, nargs="*", help=(
-        "one or more strings to be decoded to standard out"))
+    """ entry point for command-line execution """
+    argp = argparse.ArgumentParser(
+        description="This command performs MIME quoted-printable transport decoding"
+    )
+    argp_meg = argp.add_mutually_exclusive_group(required=True)
+    argp_meg.add_argument(
+        "-f",
+        "--file",
+        type=argparse.FileType("r"),
+        help="a file path which should be read and decoded to the standard out",
+    )
+    argp_meg.add_argument(
+        "-s", "--string", type=str, help="a string to be decoded to standard out"
+    )
     args = argp.parse_args()
 
     input_data = ""
     if args.file:
         for filehandle in args.file:
-            input_data += filehandle.read()
+            input_data = filehandle.read()
     else:
-        input_data += args.string
+        input_data = args.string
 
     if input_data:
-        decoded = quopri.decodestring(input_data)
-        print(decoded)
+        write_decoded(input_data + "\n")
 
 
 if __name__ == "__main__":

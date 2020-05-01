@@ -9,22 +9,22 @@ import sys
 # https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259-SW1
 
 SIMPLE_TYPES = {
-    'text': 'public.plain-text',
-    'image': 'public.image',
-    'movie': 'public.movie',
-    'audio': 'public.audio',
-    'sound': 'public.audio'
+    "text": "public.plain-text",
+    "image": "public.image",
+    "movie": "public.movie",
+    "audio": "public.audio",
+    "sound": "public.audio",
 }
 
 SPECIAL_NAMES = {
-    'README': 'public.plain-text',
-    'LICENSE': 'public.plain-text',
-    'Makefile': 'public.source-code',
-    'conf': 'public.source-code'
+    "README": "public.plain-text",
+    "LICENSE": "public.plain-text",
+    "Makefile": "public.source-code",
+    "conf": "public.source-code",
 }
 
 SPECIAL_EXTENSIONS = {
-    '.md': 'public.plain-text'
+    ".md": "public.plain-text",
 }
 
 
@@ -50,12 +50,12 @@ def quicklook(documents, uniform_type=None, debug=False):
         warn("No documents to open")
         return None
 
-    command = ['qlmanage']
+    command = ["qlmanage"]
     if uniform_type:
-        command.extend(['-c', uniform_type])
-    command.extend(['-p'] + filtered_documents)
+        command.extend(["-c", uniform_type])
+    command.extend(["-p"] + filtered_documents)
 
-    with open(os.devnull, 'wb') as devnull:
+    with open(os.devnull, "wb") as devnull:
         if debug:
             stdout = sys.stdout
             stderr = sys.stderr
@@ -90,19 +90,27 @@ def resolve_types_set(paths):
 
 def main():
     """ handler for command-line use """
-    argp = argparse.ArgumentParser(
-        description=("command-line quicklook previewer"))
-    argp.add_argument("-d", "--debug", action="store_true", help=(
-        "enable qlmanage's console output"))
-    argp.add_argument("documents", type=str, nargs="+", help=(
-        "one or more documents to preview"))
+    argp = argparse.ArgumentParser(description="command-line quicklook previewer")
+    argp.add_argument(
+        "-d", "--debug", action="store_true", help="enable qlmanage's console output"
+    )
+    argp.add_argument(
+        "documents", type=str, nargs="+", help="one or more documents to preview"
+    )
     # mutually exclusive argument group: -t and -u
     argp_meg_type = argp.add_mutually_exclusive_group(required=False)
-    argp_meg_type.add_argument("-t", "--type", type=str, help=(
-        "specifies the simplified type of the given document(s)"))
-    argp_meg_type.add_argument("-u", "--uniformtype", type=str, help=(
-        "specifies the Uniform Type Identifier of the given document(s)"))
-    #
+    argp_meg_type.add_argument(
+        "-t",
+        "--type",
+        type=str,
+        help="specifies the simplified type of the given document(s)",
+    )
+    argp_meg_type.add_argument(
+        "-u",
+        "--uniformtype",
+        type=str,
+        help="specifies the Uniform Type Identifier of the given document(s)",
+    )
     args = argp.parse_args()
 
     uniform_type = None
@@ -120,7 +128,7 @@ def main():
         # otherwise we don't use the computed types at all
         #
         # I considered lanching qlmanage multiple times (once per uniform type)
-        # but the UX is terrible, particularly if you make a mistake and give
+        # but that UX is terrible, particularly if you make a mistake and give
         # a long list of differently-typed files to preview
         types = resolve_types_set(args.documents)
         if len(types) == 1:

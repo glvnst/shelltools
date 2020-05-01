@@ -1,8 +1,8 @@
 OS_TARGETS := darwin linux windows
 BINARIES := $(OS_TARGETS:%=build/%/avg)
-.PHONY: build check clean
+.PHONY: build lint clean test
 
-build: check $(BINARIES)
+build: lint test $(BINARIES)
 
 $(BINARIES): main.go
 	@echo '==> Building $@'
@@ -10,11 +10,15 @@ $(BINARIES): main.go
 	  set -x; \
 	  GOOS="$$OS" GOARCH=amd64 go build -o "$@" $<
 
-check: main.go
-	@echo '==> Checking'
+lint: main.go
+	@echo '==> Linting'
 	go fmt
-	golint
 	go vet
+	golint
+	staticcheck
+
+test:
+	@echo '==> Testing'
 	go test -v
 
 clean:

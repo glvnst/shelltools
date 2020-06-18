@@ -134,7 +134,7 @@ clean_volumes() {
   $DOCKER_QUERY volume ls \
     --quiet \
     --filter dangling=true \
-  | grep -E '/^[0-9a-f]{32}$/' \
+  | grep -E '^[0-9a-f]{64}$' \
   | $XARGS \
     $DOCKER_MUTATE volume rm --
 }

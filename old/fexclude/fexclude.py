@@ -1,35 +1,36 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 fexclude: print arguments to the system "find" utility that exclude and prune
 the given arguments
 """
 import argparse
-import sys
+import shlex
+from typing import List
 
 
-def main():
+def main() -> None:
     """
-    primary function for command-line execution. return an exit status integer
-    or a bool type (where True indicates successful exection)
+    print the command-line arguments for excluding a series of paths from a
+    find command. for example, given the arguments x, y, and z, the resulting
+    output would be:
+    -not '(' '(' -path x -or -path y -or -path z ')' -prune ')'
     """
-    argp = argparse.ArgumentParser(description=(
-        "print arguments to the system 'find' utility that exclude and prune "
-        "the given arguments"))
-    argp.add_argument('excluded_paths', nargs="+", help=(
-        "paths to exclude from the find search"))
-    argp.add_argument('-d', '--debug', action="store_true", help=(
-        "enable debugging output"))
+    argp = argparse.ArgumentParser(
+        description="print arguments to the system 'find' utility that exclude and prune the given arguments"
+    )
+    argp.add_argument(
+        "exclude", nargs="+", help="paths to exclude from the find search"
+    )
     args = argp.parse_args()
 
-    exclusions = " -o ".join([
-        "-path {}".format(path.replace(" ", "[[:space:]]"))
-        for path in args.excluded_paths])
-    print "-not ( ( {} ) -prune )".format(exclusions)
+    output: List[str] = ["-not", "(", "("]
+    for path in sorted(args.exclude):
+        output.extend(["-or", "-path", path])
+    output.remove("-or")  # the first '-or' is extraneous
+    output.extend([")", "-prune", ")"])
 
-    return True
+    print(shlex.join(output))
 
 
-if __name__ == '__main__':
-    EXIT_STATUS = main()
-    sys.exit(int(not EXIT_STATUS if isinstance(EXIT_STATUS, bool)
-                 else EXIT_STATUS))
+if __name__ == "__main__":
+    main()

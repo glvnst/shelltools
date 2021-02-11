@@ -1,6 +1,6 @@
 # docker-vm
 
-simple utility for reporting information about the docker desktop vm
+utility for reporting information about the docker desktop virtual machine (including `df`, and `top`)
 
 ## Usage
 

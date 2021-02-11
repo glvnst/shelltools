@@ -1,6 +1,6 @@
 # docker-vol
 
-simple utility for reporting information about docker
+utility for reporting information about and exploring docker volumes (including `du`)
 
 ## Usage
 

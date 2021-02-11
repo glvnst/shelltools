@@ -17,3 +17,5 @@ sumsay() {
         say -i -v tom "$FILE:" "$SUM"
     done
 }
+
+[ -n "$IMPORT" ] || sumsay "$@"

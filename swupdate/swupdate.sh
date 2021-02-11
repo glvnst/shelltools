@@ -8,4 +8,3 @@ main() {
 }
 
 [ -n "$IMPORT" ] || main "$@"
-

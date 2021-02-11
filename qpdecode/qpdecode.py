@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Print a random value using the specified parameters """
+""" prints the given data with quoted-printable encoding removed """
 import argparse
 import quopri
 import sys

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 A tool for sorting text with human-readable byte sizes like "2.5 KiB" or "6TB"
-Examples uses include sorting the output of "du -h" or "docker image ls".
+Example uses include sorting the output of "du -h" or "docker image ls".
 """
 import argparse
 import re

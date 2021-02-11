@@ -47,7 +47,7 @@ def printrow(*fields):
     print(' | '.join(fields))
 
 
-def print_table(readmes, dhrepo):
+def print_table(readmes):
     """ prints the markdown table of images """
     headings = [
         "Name",
@@ -89,8 +89,6 @@ def main():
         description=(
             "Utility for (re)generating the main README in this repo"),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    argp.add_argument('-r', '--dhrepo', default="galvanist/conex", help=(
-        "the docker hub repo path to use when linking to images"))
     argp.add_argument('-i', '--header', action="append", help=(
         "header file(s) to include at the beginning of the output"))
     argp.add_argument('readmes', nargs="+", help=(
@@ -101,8 +99,8 @@ def main():
 
     for header in args.header:
         print_file(header)
-    print("## Images\n")
-    print_table(args.readmes, args.dhrepo)
+    print("## Tools\n")
+    print_table(args.readmes)
 
     return 0
 

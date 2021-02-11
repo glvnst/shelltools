@@ -3,7 +3,7 @@
 Various command-line tools or other scripts.
 
 
-## Images
+## Tools
 
 Name | Description
 :--- | :----------

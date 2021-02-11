@@ -1,6 +1,6 @@
 # mdtable
 
-Utility for working with markdown tables.
+utility for creating markdown tables from json
 
 Work in progress. -- Currently this utility only support generating markdown tables.
 

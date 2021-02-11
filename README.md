@@ -18,7 +18,7 @@ Name | Description
 [`hsort`](hsort) | tool for sorting text with human-readable byte sizes like "2.5 KiB" or "6TB"
 [`k8s-reportall`](k8s-reportall) | Prints a markdown-formatted summary of all the objects in a kubernetes cluster
 [`line2null`](line2null) | converts linefeeds on the standard input into null bytes (just calls tr)
-[`mdtable`](mdtable) | Utility for working with markdown tables.
+[`mdtable`](mdtable) | utility for creating markdown tables from json
 [`mdtablefmt`](mdtablefmt) | A command-line utility for reformatting markdown tables. It reads the text for a single markdown table from the standard input and prints the table to standard output with the columns of the proper width and alignment.
 [`old`](old) | misc old cruft
 [`ql`](ql) | invoke macOS quicklook feature from the command-line

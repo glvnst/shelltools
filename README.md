@@ -20,6 +20,7 @@ Name | Description
 [`line2null`](line2null) | converts linefeeds on the standard input into null bytes (just calls tr)
 [`mdtable`](mdtable) | utility for creating markdown tables from json
 [`mdtablefmt`](mdtablefmt) | A command-line utility for reformatting markdown tables. It reads the text for a single markdown table from the standard input and prints the table to standard output with the columns of the proper width and alignment.
+[`movehere`](movehere) | shell utility for merging other directories into the current working directory
 [`old`](old) | misc old cruft
 [`ql`](ql) | invoke macOS quicklook feature from the command-line
 [`qpdecode`](qpdecode) | prints the given data with quoted-printable encoding removed

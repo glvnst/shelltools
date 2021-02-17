@@ -2,7 +2,7 @@
 
 utility removes bits of docker detritus, similar to the standard command `docker system prune`, but with different parameters
 
-## usage
+## Usage
 
 ```
 Usage: docker-clean.sh [-h | --help]

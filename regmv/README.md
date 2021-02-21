@@ -2,37 +2,35 @@
 
 rename files using regular expressions
 
-this program is different than some regex replacement utilities because the replacement text is specified in the [Python Format Specification Mini-Language](https://docs.python.org/3/library/string.html#format-specification-mini-language), which several useful things loaded in the context, including:
+This program is a little different than you might expect  because of the way that you specify replacements. regmv utilizes the the [Python Format Specification Mini-Language](https://docs.python.org/3/library/string.html#format-specification-mini-language). There are several useful things included in the replacement context, including:
 
 positional params:
 
-    * `0`: `match.group(0)` - "the whole match"
-
-    * `1..n`: `match.group(n)` - the values of the regex capture groups
+* `0`: ("the whole match") which comes from `match.group(0)`
+* `1..n`: which come from the regex capture groups via `match.group(n)`
 
 keyword params:
 
-    * match.groupdict() is unpacked into the keyword params
-
-    * `counter` whose int value is pre-incremented whenever it is accessed (first value = 1)
+* match.groupdict() is unpacked into the keyword params
+* `counter` whose int value is pre-incremented whenever it is accessed (first value = 1)
 
 these params are wrapped so that they have attributes which provide access to common string methods, including:
 
-    * `.capitalize`
-    * `.casefold`
-    * `.lower`
-    * `.lstrip`
-    * `.rstrip`
-    * `.strip`
-    * `.swapcase`
-    * `.title`
-    * `.upper`
-    * `.len`
+* `.capitalize`
+* `.casefold`
+* `.lower`
+* `.lstrip`
+* `.rstrip`
+* `.strip`
+* `.swapcase`
+* `.title`
+* `.upper`
+* `.len`
 
 the arguments can also be sliced and formatted, for example:
 
-    * `{0[2:]}`
-    * `{counter:03}`
+* `{0[2:]}` - returns the whole match starting at the 3rd character
+* `{1:03}` - returns the contents of the first match (assumed to be numeric), zero-padded to 3 digits
 
 ## Examples
 
@@ -44,6 +42,7 @@ for n in $(seq 1 11); do
   touch "some/things/test-${n}"
 done
 ```
+
 what that looks like:
 
 ```sh
@@ -63,7 +62,7 @@ some/things/test-8
 some/things/test-9
 ```
 
-let's instead call those files "example":
+let's rename those "test" files to "example" files:
 
 ```sh
 $ regmv -s test -r example some/things/*

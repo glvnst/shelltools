@@ -26,6 +26,7 @@ Name | Description
 [`qpdecode`](qpdecode) | prints the given data with quoted-printable encoding removed
 [`randvoice`](randomvoice) | Print the randomly-chosen name of an available text-to-speech voice
 [`randrange`](randrange) | Print a random value using the specified parameters
+[`regmv`](regmv) | rename files using regular expressions
 [`slowprint`](slowprint) | shell utility for slowly printing things to the terminal, retro-style
 [`sumsay`](sumsay) | shell function for reading aloud file checksums and keys
 [`swupdate`](swupdate) | utility for running software updates on debian-based Linux distributions

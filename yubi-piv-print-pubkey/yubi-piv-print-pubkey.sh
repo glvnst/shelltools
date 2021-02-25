@@ -11,7 +11,7 @@ yubi_piv_print_pubkey() {
     "${PKCS11_LIBRARY:-opensc-pkcs11.so}" \
   ; do
     if [ -f "$pkcslib" ]; then
-      echo "$pkcslib"
+      # echo "$pkcslib"
       ssh-keygen -D "$pkcslib" "$@"
       return
     fi

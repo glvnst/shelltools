@@ -31,3 +31,4 @@ Name | Description
 [`sumsay`](sumsay) | shell function for reading aloud file checksums and keys
 [`swupdate`](swupdate) | utility for running software updates on debian-based Linux distributions
 [`tev`](tev) | util for reporting characters the terminal is sending
+[`yubi-piv-print-pubkey`](yubi-piv-print-pubkey) | prints the pubkey of the attached PKCS#11 token -- for example a yubikey in PIV mode

@@ -7,8 +7,8 @@ warn() {
 }
 
 die() {
-	warn "FATAL:" "$@"
-	exit 1
+  warn "FATAL:" "$@"
+  exit 1
 }
 
 # always check for the deploy key
@@ -18,7 +18,7 @@ die() {
 # if applicable, exec ssh with the correct arguments
 if [ -n "$WRAP_SSH" ]; then
   # when this envvar is set, git is running us again as a stand-in for ssh
-	exec ssh -i "$GIT_DEPLOY_KEY" -F /dev/null "$@"
+  exec ssh -i "$GIT_DEPLOY_KEY" -F /dev/null "$@"
 fi
 
 # safety-check before we attempt to have git call us again as an ssh stand-in

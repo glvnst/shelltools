@@ -12,25 +12,22 @@ With more modern versions of git you don't need this script:
 
 * (git >= 2.3.0) supports the `GIT_SSH_COMMAND` environment variable (which allows the arguments that `GIT_SSH` forbids)
 
-	```sh
-	GIT_SSH_COMMAND="ssh -i $GIT_DEPLOY_KEY -F /dev/null"
-	# ...or more directly...
-	GIT_SSH_COMMAND="ssh -i $(pwd)/.git_deploy_key -F /dev/null"
-```
+    ```sh
+    GIT_SSH_COMMAND="ssh -i $GIT_DEPLOY_KEY -F /dev/null"
+    # ...or more directly...
+    GIT_SSH_COMMAND="ssh -i $(pwd)/.git_deploy_key -F /dev/null"
+    ```
 
 * (git >= 2.10.0) is so EVEN BETTER! you can set the ssh identity file for a specific git working directory by setting core.sshCommand in the local config file:
 
-	```sh
-	$ git config --local \
-		core.sshCommand \
-		"ssh -i $(pwd)/.git_deploy_key -F /dev/null"
-	```
-
---
+    ```sh
+    $ git config --local \
+      core.sshCommand \
+      "ssh -i $(pwd)/.git_deploy_key -F /dev/null"
+    ```
 
 The excellent answers at this stack overflow question really helped me out with this: <https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use/
 
---
 
 ## Example Usage:
 

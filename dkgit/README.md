@@ -6,7 +6,7 @@ Don't commit keys to repos. This is not about that. This script can be useful wh
 
 Since version 1, git has supported the `GIT_SSH` envvar, which lets you specify a path to an executable. BUT the envvar cannot contain arguments for SSH... just a path. This script utilizes this envvar.
 
---
+---
 
 With more modern versions of git you don't need this script:
 

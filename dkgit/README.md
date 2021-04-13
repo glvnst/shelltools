@@ -18,7 +18,7 @@ With more modern versions of git you don't need this script:
     GIT_SSH_COMMAND="ssh -i $(pwd)/.git_deploy_key -F /dev/null"
     ```
 
-* (git >= 2.10.0) is so EVEN BETTER! you can set the ssh identity file for a specific git working directory by setting core.sshCommand in the local config file:
+* (git >= 2.10.0) is **EVEN BETTER**! you can set the ssh identity file for a specific git working directory by setting core.sshCommand in the local config file:
 
     ```sh
     $ git config --local \
@@ -26,7 +26,7 @@ With more modern versions of git you don't need this script:
       "ssh -i $(pwd)/.git_deploy_key -F /dev/null"
     ```
 
-The excellent answers at this stack overflow question really helped me out with this: <https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use/
+The excellent answers at this stack overflow question really helped me out with this: <https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use/>
 
 
 ## Example Usage:
@@ -43,7 +43,7 @@ The excellent answers at this stack overflow question really helped me out with 
 
 2. Give the pub key to your git host
 
-2. Use dkgit instead of using git directly:
+3. Use dkgit instead of using git directly:
 
     ```sh
     $ dkgit clone git@example.com/turtles/turtle_server.git

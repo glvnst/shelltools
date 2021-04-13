@@ -8,9 +8,11 @@ Most of what this script does can be accomplished with the following now-availab
 
 ```sh
 dcr() {
-	(set -ex;
-	docker-compose rm --force --stop -v "$@"
-	&& docker-compose up -d --remove-orphans --renew-anon-volumes "$@")
+  ( # a strict, verbose subshell
+    set -ex
+    docker-compose rm --force --stop -v "$@" \
+    docker-compose up -d --remove-orphans --renew-anon-volumes "$@"
+  )
 }
 ```
 

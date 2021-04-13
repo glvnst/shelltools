@@ -12,6 +12,7 @@ Name | Description
 [`collect`](collect) | combination of mv and mkdir. Creates the given target directory if necessary then moves the given files into the target
 [`dkgit`](dkgit) | thin wrapper around git (**particularly older versions of git**) which causes it to use the ssh identity file found at `$(pwd)/.git_deploy_key` (controllable with `$GIT_DEPLOY_KEY`)
 [`docker-clean`](docker-clean) | utility removes bits of docker detritus, similar to the standard command `docker system prune`, but with different parameters
+[`dcr`](docker-dcr) | "docker compose restart" - a utility for restarting services in a docker-compose container composition
 [`docker-vm`](docker-vm) | utility for reporting information about the docker desktop virtual machine (including `df`, and `top`)
 [`docker-vol`](docker-vol) | utility for reporting information about and exploring docker volumes (including `du`)
 [`fexclude`](fexclude) | print arguments to the system "find" utility that exclude and prune the given arguments

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """ Print a random value using the specified parameters """
 from __future__ import print_function
 import argparse

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ Print the randomly-chosen name of an available text-to-speech voice """
 import subprocess
 import random

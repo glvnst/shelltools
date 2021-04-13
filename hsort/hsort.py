@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """
 A tool for sorting text with human-readable byte sizes like "2.5 KiB" or "6TB"
 Example uses include sorting the output of "du -h" or "docker image ls".

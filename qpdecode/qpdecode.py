@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ prints the given data with quoted-printable encoding removed """
 import argparse
 import quopri

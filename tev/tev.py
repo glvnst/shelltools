@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ util for reporting characters the terminal is sending (in raw mode) """
 # Copyright (C) 2008 Benjamin Burke - http://www.galvanist.com/
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ shell utility for slowly printing things to the terminal, retro-style """
 import argparse
 import sys

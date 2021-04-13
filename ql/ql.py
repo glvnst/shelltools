@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """ invoke macOS quicklook feature from the command-line """
 import argparse
 import os

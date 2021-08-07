@@ -147,25 +147,33 @@ func TrimZeros(val float64) string {
 }
 
 // ScanNumbers reads lines from the given io.Reader and returns a slice of numbers found.
-func ScanNumbers(rd io.Reader, findAll bool) (numbers []float64) {
-	var matches [][]byte
+func ScanNumbers(rd io.Reader, findAll bool) []float64 {
+	var numbers []float64
 
 	scanner := bufio.NewScanner(rd)
-	for scanner.Scan() {
-		line := scanner.Bytes()
-		if findAll {
-			matches = NumberRegexp.FindAll(line, -1)
-		} else {
-			match := NumberRegexp.Find(line)
-			if match == nil {
+	if findAll {
+		for scanner.Scan() {
+			line := scanner.Text()
+			matches := NumberRegexp.FindAllString(line, -1)
+			for _, value := range matches {
+				matchFloat, err := strconv.ParseFloat(value, 64)
+				if err != nil {
+					log.Printf("Couldn't parse %s into float\n", value)
+					continue
+				}
+				numbers = append(numbers, matchFloat)
+			}
+		}
+	} else {
+		for scanner.Scan() {
+			line := scanner.Text()
+			match := NumberRegexp.FindString(line)
+			if len(match) == 0 {
 				continue
 			}
-			matches = [][]byte{match}
-		}
-		for _, value := range matches {
-			matchFloat, err := strconv.ParseFloat(string(value), 64)
+			matchFloat, err := strconv.ParseFloat(match, 64)
 			if err != nil {
-				log.Printf("Couldn't parse %s into float\n", value)
+				log.Printf("Couldn't parse %s into float\n", match)
 				continue
 			}
 			numbers = append(numbers, matchFloat)

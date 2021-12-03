@@ -10,7 +10,7 @@ Most of what this script does can be accomplished with the following now-availab
 dcr() {
   ( # a strict, verbose subshell
     set -ex
-    docker-compose rm --force --stop -v "$@" \
+    docker-compose rm --force --stop -v "$@"
     docker-compose up -d --remove-orphans --renew-anon-volumes "$@"
   )
 }

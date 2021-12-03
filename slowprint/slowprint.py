@@ -25,7 +25,7 @@ def slowprint(input_string, delay, output=None):
 
 
 def main():
-    """ entrypoint for command-line execution """
+    """entrypoint for command-line execution"""
     argp = argparse.ArgumentParser(
         description="shell utility for slowly printing things to the terminal, retro-style",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,

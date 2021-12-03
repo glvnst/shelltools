@@ -74,7 +74,7 @@ def dict2mdtable(row_list, col_list=None, fill_empty=""):
 
 
 def main():
-    """ entrypoint for direct execution """
+    """entrypoint for direct execution"""
     # wip. currently reads json docs (1 per line) on stdin, prints summary table
     print(dict2mdtable([json.loads(line) for line in sys.stdin]))
 

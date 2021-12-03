@@ -29,7 +29,7 @@ SPECIAL_EXTENSIONS = {
 
 
 def warn(message):
-    """ Write a warning message to stderr """
+    """Write a warning message to stderr"""
     sys.stderr.write("WARN: {}\n".format(message))
 
 
@@ -50,7 +50,7 @@ def quicklook(documents, uniform_type=None, debug=False):
         warn("No documents to open")
         return None
 
-    command = ["qlmanage"]
+    command = ["/usr/bin/qlmanage"]
     if uniform_type:
         command.extend(["-c", uniform_type])
     command.extend(["-p"] + filtered_documents)
@@ -66,7 +66,7 @@ def quicklook(documents, uniform_type=None, debug=False):
 
 
 def fileext(filename):
-    """ return the filename extension for the given filename """
+    """return the filename extension for the given filename"""
     parts = os.path.splitext(filename)
     if len(parts) < 2:
         return filename
@@ -74,7 +74,7 @@ def fileext(filename):
 
 
 def resolve_types_set(paths):
-    """ return a set of the computed uniform types for the given paths """
+    """return a set of the computed uniform types for the given paths"""
     types = list()
     for path in paths:
         filename = os.path.basename(path)
@@ -89,7 +89,7 @@ def resolve_types_set(paths):
 
 
 def main():
-    """ handler for command-line use """
+    """handler for command-line use"""
     argp = argparse.ArgumentParser(description="command-line quicklook previewer")
     argp.add_argument(
         "-d", "--debug", action="store_true", help="enable qlmanage's console output"

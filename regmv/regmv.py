@@ -2,13 +2,6 @@
 """
 regmv: use regular expressions to rename files
 """
-from typing import (
-    Callable,
-    Dict,
-    List,
-    Optional,
-    Union,
-)
 import argparse
 import datetime
 import functools
@@ -17,10 +10,11 @@ import re
 import shlex
 import string
 import sys
+from typing import Callable, Dict, List, Optional, Union
 
 
 class Counter:
-    """ implements the counter used in the replacer function """
+    """implements the counter used in the replacer function"""
 
     def __init__(self) -> None:
         self.value: int = 0
@@ -42,11 +36,11 @@ class StringWrap:
     """
 
     def __init__(self, value: str) -> None:
-        """ creates a new stringwrap instance """
+        """creates a new stringwrap instance"""
         self.value = value
 
     def __format__(self, format_spec):
-        """ return a formatted version of self """
+        """return a formatted version of self"""
         # print("value:{} format_spec:{}".format(self.value, format_spec))
 
         # try to pass the __format__ call to the int, float, or regular string
@@ -78,7 +72,7 @@ class StringWrap:
         return self.value.__getitem__(key)
 
     def __getattr__(self, name: str) -> Union[str, int, object]:
-        """ call the named string method """
+        """call the named string method"""
         constants: Dict[str, str] = {
             "ascii_letters": string.ascii_letters,
             "ascii_lowercase": string.ascii_lowercase,
@@ -118,7 +112,7 @@ class StringWrap:
 
 
 class Rename:
-    """ class representing a rename operation """
+    """class representing a rename operation"""
 
     def __init__(self, path: pathlib.Path, new_name: str) -> None:
         self.old = path

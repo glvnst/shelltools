@@ -7,7 +7,6 @@ import argparse
 import re
 import sys
 
-
 # byte size multiples are hard. https://en.wikipedia.org/wiki/Kibibyte
 
 # fmt: off
@@ -82,7 +81,7 @@ CLASSIC_MULTIPLES = {
 
 
 def main():
-    """ command-line execution handler """
+    """command-line execution handler"""
     argp = argparse.ArgumentParser(
         description="tool for sorting text with human-readable byte sizes like '2.5 KiB' or '6TB'"
     )

@@ -21,7 +21,7 @@ import tty
 
 
 def main():
-    """ entrypoint for command-line execution """
+    """entrypoint for command-line execution"""
     tattr = termios.tcgetattr()
     stdin = sys.stdin.fileno()
 

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """ Print the randomly-chosen name of an available text-to-speech voice """
-import subprocess
-import random
 import argparse
+import random
+import subprocess
 import sys
-
 
 NOVELTY_VOICES = set(
     [
@@ -27,16 +26,16 @@ NOVELTY_VOICES = set(
 
 
 def get_voice_list():
-    """ Return a list of available voices on the system """
+    """Return a list of available voices on the system"""
     voices = list()
-    for line in subprocess.check_output(["say", "-v", "?"]).splitlines():
+    for line in subprocess.check_output(["/usr/bin/say", "-v", "?"]).splitlines():
         words = line.split("  ")
         voices.append(words[0])
     return voices
 
 
 def main():
-    """ entrypoint for command-line execution """
+    """entrypoint for command-line execution"""
     argp = argparse.ArgumentParser(
         description="Print the randomly-chosen name of an available text-to-speech voice"
     )

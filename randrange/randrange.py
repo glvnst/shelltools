@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """ Print a random value using the specified parameters """
-from __future__ import print_function
 import argparse
 import random
 import sys
 
 
 def main():
-    """ mainly the sole function """
+    """mainly the sole function"""
     argp = argparse.ArgumentParser(
         description=(
             "Print a random value using the specified parameters. The low and "

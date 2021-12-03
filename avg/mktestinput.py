@@ -14,7 +14,7 @@ def load_words(source="/usr/share/dict/words"):
 
 
 def main():
-    """ entrypoint """
+    """entrypoint"""
     rand = random.SystemRandom()
     words = load_words()
     primes = [1, 2, 3, 5, 7]

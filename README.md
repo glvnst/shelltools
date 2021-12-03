@@ -30,7 +30,7 @@ Name | Description
 [`randrange`](randrange) | Print a random value using the specified parameters
 [`regmv`](regmv) | rename files using regular expressions
 [`slowprint`](slowprint) | shell utility for slowly printing things to the terminal, retro-style
-[`sumsay`](sumsay) | shell function for reading aloud file checksums and keys
+[`sumsay`](sumsay) | macOS utility for reading checksums aloud
 [`swupdate`](swupdate) | utility for running software updates on debian-based Linux distributions
 [`tev`](tev) | util for reporting characters the terminal is sending
 [`yubi-piv-print-pubkey`](yubi-piv-print-pubkey) | prints the pubkey of the attached PKCS#11 token -- for example a yubikey in PIV mode

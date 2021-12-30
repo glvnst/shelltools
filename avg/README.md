@@ -1,6 +1,8 @@
 # avg
 
-This command-line utility reads lines from the standard input and writes a summary of the numeric data found therein. It was inspired by the pandas ["DataFrame describe"](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html) method.
+utility which reads lines from the standard input and writes a summary of the numeric data found therein
+
+It was inspired by the pandas ["DataFrame describe"](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html) method.
 
 ## Output
 

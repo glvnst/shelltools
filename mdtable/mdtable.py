@@ -46,7 +46,7 @@ def dict2mdtable(row_list, col_list=None, fill_empty=""):
     # calculate the width of each column. this is derived from the max length
     # of the row contents in a column including the column name itself
     col_widths = {
-        col_name: max([len(row[col_name]) for row in row_list] + [len(col_name)])
+        col_name: max([len(str(row[col_name])) for row in row_list] + [len(col_name)])
         for col_name in col_list
     }
 

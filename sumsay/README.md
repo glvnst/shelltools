@@ -1,6 +1,6 @@
 # sumsay
 
-macOS utility for reading checksums aloud
+macOS utility for reading checksums and serial numbers aloud
 
 Sometimes it's easier to verify a checksum if it is read aloud to you. That's what this script is for.
 

@@ -1,6 +1,8 @@
 # mdtablefmt
 
-A command-line utility for reformatting markdown tables. It reads the text for a single markdown table from the standard input and prints the table to standard output with the columns of the proper width and alignment.
+utility for reformatting markdown tables
+
+It reads the text for a single markdown table from the standard input and prints the table to standard output with the columns of the proper width and alignment.
 
 ## Example
 

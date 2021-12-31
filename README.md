@@ -29,6 +29,7 @@ Name | Description
 [`old`](old) | misc old cruft
 [`ql`](ql) | invoke macOS quicklook feature from the command-line
 [`qpdecode`](qpdecode) | prints the given data with quoted-printable encoding removed
+[`randcron`](randcron) | prints a crontab-style time specification with the hour and minute randomized
 [`randline`](randline) | prints a randomly selected line from the given text file
 [`randrange`](randrange) | prints a random value using the specified parameters
 [`randvoice`](randvoice) | prints the name of a randomly-choosen text-to-speech voice on a macOS system

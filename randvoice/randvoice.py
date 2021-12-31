@@ -199,7 +199,7 @@ def main() -> None:
     argp.add_argument(
         "--include-novelty",
         action="store_true",
-        help="exclude the novelty voice set",
+        help="include the set of novelty voices",
     )
     argp.add_argument(
         "--only-novelty",

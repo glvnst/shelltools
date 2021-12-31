@@ -1,4 +1,4 @@
-# dcr
+# docker-dcr
 
 "docker compose restart" - a utility for restarting services in a docker-compose container composition
 

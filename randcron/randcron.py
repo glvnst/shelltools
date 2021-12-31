@@ -10,7 +10,9 @@ def main() -> int:
     entrypoint for direct execution; returns an integer suitable for use with sys.exit
     """
     argp = argparse.ArgumentParser(
-        description=("prints out a daily cron time spec with random time-of-day"),
+        description=(
+            "prints out a crontab-style time specification with randomized values"
+        ),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     argp.add_argument(
@@ -29,7 +31,7 @@ def main() -> int:
         help="choose a random month of the year (1-12)",
     )
     argp.add_argument(
-        "--dayofweek",
+        "--weekday",
         action="store_true",
         help="choose a random day of the week (1-7)",
     )
@@ -49,7 +51,7 @@ def main() -> int:
         rand(0, 23),
         rand(1, 31) if args.monthday else "*",
         rand(1, 12) if args.month else "*",
-        rand(1, 7) if args.dayofweek else "*",
+        rand(1, 7) if args.weekday else "*",
     )
     print(" ".join(str(segment) for segment in segments))
 

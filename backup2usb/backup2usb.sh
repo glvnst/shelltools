@@ -126,7 +126,7 @@ main() {
   [ -n "$init" ] && exec restic --verbose init
 
   # invoke restic
-  backup "$@"
+  backup "$@" || die "restic failed"
 
   # eject the volume the restic archive is located on
   [ -n "$eject" ] && eject_usb

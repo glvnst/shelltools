@@ -2,10 +2,6 @@
 # backup2usb: runs a restic backup of some default paths
 SELF="$(basename "$0" ".sh")"
 
-export \
-  RESTIC_REPOSITORY="${BACKUP2USB_REPOSITORY:-/Volumes/backup/backup2usb}" \
-  RESTIC_PASSWORD_COMMAND="${BACKUP2USB_PASSWORD_COMMAND:-keychain-password get backup2usb}" \
-  ;
 
 usage() {
   exception="$1"; shift
@@ -46,6 +42,12 @@ backup() {
     "$@"
 }
 
+eject_usb() {
+  disk_path="${RESTIC_REPOSITORY%"${RESTIC_REPOSITORY#/Volumes/*/*}"}"
+  warn "ejecting ${disk_path}"
+  diskutil eject "${disk_path}"
+}
+
 warn() {
   printf '%s %s %s\n' "$(date '+%FT%T%z')" "$SELF" "$*" >&2
 }
@@ -56,6 +58,9 @@ die() {
 }
 
 main() {
+  eject="1" # eject by default
+  init="" # backup (not init) by default
+
   # arg-processing loop
   while [ $# -gt 0 ]; do
     arg="$1" # shift at end of loop; if you break in the loop don't forget to shift first
@@ -69,7 +74,11 @@ main() {
         ;;
 
       --init)
-        exec restic --verbose init
+        init="1"
+        ;;
+
+      --no-eject)
+        eject=""
         ;;
 
       --mega-turtles)
@@ -92,16 +101,37 @@ main() {
   # ensure required environment variables are set
   # : "${USER:?the USER environment variable must be set}"
 
-  # do things
-  backup \
-    "$HOME/Desktop" \
-    "$HOME/Documents" \
-    "$HOME/Downloads" \
-    "$HOME/bin" \
-    "$HOME/work" \
+  # add the default backup items to the positional params
+  set -- \
+    ~/Desktop \
+    ~/Documents \
+    ~/Downloads \
+    ~/bin \
+    ~/work \
+    "$@" \
   ;
+
+  # source the local config file (it can manipulate the positional params to
+  # change the backup items and arguments)
+  config_file="$HOME/.backup2usb_config.sh"
+  # shellcheck source=/dev/null
+  [ -f "$config_file" ] && . "$config_file"
+
+  export \
+    RESTIC_REPOSITORY="${BACKUP2USB_REPOSITORY:-/Volumes/backup/backup2usb}" \
+    RESTIC_PASSWORD_COMMAND="${BACKUP2USB_PASSWORD_COMMAND:-keychain-password get backup2usb}" \
+  ;
+
+  # init is a one-off process to create the repo
+  [ -n "$init" ] && exec restic --verbose init
+
+  # invoke restic
+  backup "$@"
+
+  # eject the volume the restic archive is located on
+  [ -n "$eject" ] && eject_usb
 
   exit 0
 }
 
-[ -n "$IMPORT" ] || main "$@"; exit
+main "$@"; exit

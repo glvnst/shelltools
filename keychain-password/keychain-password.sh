@@ -3,7 +3,7 @@
 SELF="$(basename "$0" ".sh")"
 
 usage() {
-  exception="$1"; shift
+  exception="$1"
   [ -n "$exception" ] && printf 'ERROR: %s\n\n' "$exception"
 
   printf '%s\n' \

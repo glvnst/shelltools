@@ -4,7 +4,7 @@ SELF="$(basename "$0" ".sh")"
 
 
 usage() {
-  exception="$1"; shift
+  exception="$1"
   [ -n "$exception" ] && printf 'ERROR: %s\n\n' "$exception"
 
   printf '%s\n' \
@@ -14,6 +14,9 @@ usage() {
     "-d / --debug  print additional debugging messages" \
     "path          additional paths to backup" \
     "" \
+    "--init        create the restic repo (only needed once)" \
+    "--restore     call restore instead of backup" \
+    "" \
     "Runs a restic backup of some default paths and any additional paths" \
     "" # no trailing slash
 
@@ -22,6 +25,16 @@ usage() {
 }
 
 backup() {
+  # add the default backup items to the positional params
+  set -- \
+    ~/Desktop \
+    ~/Documents \
+    ~/Downloads \
+    ~/bin \
+    ~/work \
+    "$@" \
+  ;
+
   restic \
     --verbose \
     --cleanup-cache \
@@ -42,6 +55,15 @@ backup() {
     "$@"
 }
 
+restore() {
+  restic \
+    --verbose \
+    --cleanup-cache \
+    restore \
+    "$@"
+}
+
+
 eject_usb() {
   disk_path="${RESTIC_REPOSITORY%"${RESTIC_REPOSITORY#/Volumes/*/*}"}"
   warn "ejecting ${disk_path}"
@@ -60,6 +82,7 @@ die() {
 main() {
   eject="1" # eject by default
   init="" # backup (not init) by default
+  restore="" # backup (not restore) by default
 
   # arg-processing loop
   while [ $# -gt 0 ]; do
@@ -90,6 +113,10 @@ main() {
         break
         ;;
 
+      --restore)
+        restore="1"
+        ;;
+
       *)
         # unknown arg, leave it back in the positional params
         break
@@ -100,16 +127,6 @@ main() {
 
   # ensure required environment variables are set
   # : "${USER:?the USER environment variable must be set}"
-
-  # add the default backup items to the positional params
-  set -- \
-    ~/Desktop \
-    ~/Documents \
-    ~/Downloads \
-    ~/bin \
-    ~/work \
-    "$@" \
-  ;
 
   # source the local config file (it can manipulate the positional params to
   # change the backup items and arguments)
@@ -126,7 +143,11 @@ main() {
   [ -n "$init" ] && exec restic --verbose init
 
   # invoke restic
-  backup "$@" || die "restic failed"
+  if [ -n "$restore" ]; then
+    restore "$@" || die "restic failed"
+  else
+    backup "$@" || die "restic failed"
+  fi
 
   # eject the volume the restic archive is located on
   [ -n "$eject" ] && eject_usb

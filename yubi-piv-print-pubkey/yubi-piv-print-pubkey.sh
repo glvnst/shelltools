@@ -8,6 +8,7 @@ yubi_piv_print_pubkey() {
     /usr/lib64/pkcs11/opensc-pkcs11.so \
     /usr/local/lib/opensc-pkcs11.so \
     /usr/local/opt/opensc/lib/pkcs11/opensc-pkcs11.so \
+    /usr/local/lib/libykcs11.dylib \
     "${PKCS11_LIBRARY:-opensc-pkcs11.so}" \
   ; do
     if [ -f "$pkcslib" ]; then

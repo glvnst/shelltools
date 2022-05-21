@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """ Utility for (re)generating the main README in this repo """
 from __future__ import print_function
 

@@ -43,7 +43,7 @@ docker_volume_sh() {
 }
 
 usage() {
-  exception="$1"; shift
+  exception="$1"
   [ -n "$exception" ] && printf 'ERROR: %s\n\n' "$exception"
 
   printf '%s\n' \
@@ -157,7 +157,7 @@ main() {
           --rm \
           --interactive \
           --tty \
-          --volume "${infile}:/src:ro" \
+          --volume "${infile}:/infile:ro" \
           --volume "${volname}:/dest" \
           --workdir "/dest" \
           "busybox:latest" \

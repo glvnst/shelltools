@@ -87,8 +87,8 @@ def main():
     )
     argp.add_argument(
         "infile",
-        nargs="*",
-        type=argparse.FileType("r"),
+        nargs="?",
+        type=argparse.FileType("r", encoding="utf-8"),
         default=sys.stdin,
         help="the input file to read, defaults to stdin if this argument is omitted",
     )

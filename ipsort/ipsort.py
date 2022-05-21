@@ -42,7 +42,7 @@ def main() -> int:
     argp.add_argument(
         "input",
         type=argparse.FileType("rt", encoding="utf-8"),
-        default=sys.stdin,
+        default=[sys.stdin],
         nargs="*",
         help="file(s) whose lines should be read, sorted, and printed",
     )

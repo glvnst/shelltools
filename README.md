@@ -35,6 +35,7 @@ Name | Description
 [`randvoice`](randvoice) | prints the name of a randomly-choosen text-to-speech voice on a macOS system
 [`randword`](randword) | prints a random word from the dictionary
 [`regmv`](regmv) | rename files using regular expressions
+[`semversort`](semversort) | utility for sorting the lines in a file by Semantic Versioning strings they contain
 [`slowprint`](slowprint) | shell utility for slowly printing things to the terminal, retro-style
 [`sumsay`](sumsay) | macOS utility for reading checksums and serial numbers aloud
 [`swupdate`](swupdate) | runs software updates on debian-based Linux distributions
